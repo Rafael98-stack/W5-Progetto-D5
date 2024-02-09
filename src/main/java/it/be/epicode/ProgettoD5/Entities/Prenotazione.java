@@ -2,7 +2,9 @@ package it.be.epicode.ProgettoD5.Entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.persister.entity.SingleTableEntityPersister;
 
 import java.util.List;
@@ -12,7 +14,7 @@ import java.util.Random;
 @Data
 public abstract class Prenotazione {
 @Id
-@GeneratedValue(strategy = GenerationType.AUTO)
+@GeneratedValue(strategy = GenerationType.IDENTITY)
     private long Id;
 private String username;
 
@@ -22,6 +24,9 @@ private String nomeCompleto;
 private String email;
 
 @ManyToMany
+@JoinTable( name = "prenotazioni_postazioni",
+        joinColumns = @JoinColumn(name = "prenotazioni_id"),
+        inverseJoinColumns = @JoinColumn(name = "postazioni_id"))
 private List<Postazione> postaziones;
 
     public Prenotazione() {
@@ -35,14 +40,44 @@ private List<Postazione> postaziones;
         this.postaziones = postaziones;
     }
 
-    public void nomeCompleto() {
-        this.nomeCompleto = this.username + " " + this.usersurname;
+    public String getUsername() {
+        return username;
     }
 
-    public String email() {
-        Random random = new Random();
-int randomPick = random.nextInt(RANDOMSITE.values().length);
-;
-      return   this.nomeCompleto.toLowerCase() + RANDOMSITE.values()[randomPick].toString();
+    public void setUsername(String username) {
+        this.username = username;
     }
+
+    public String getUsersurname() {
+        return usersurname;
+    }
+
+    public void setUsersurname(String usersurname) {
+        this.usersurname = usersurname;
+    }
+
+    public String getNomeCompleto() {
+        return nomeCompleto;
+    }
+
+    public void setNomeCompleto(String nomeCompleto) {
+        this.nomeCompleto = nomeCompleto;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public List<Postazione> getPostaziones() {
+        return postaziones;
+    }
+
+    public void setPostaziones(List<Postazione> postaziones) {
+        this.postaziones = postaziones;
+    }
+
 }

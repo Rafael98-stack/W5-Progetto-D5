@@ -40,9 +40,8 @@ salvataggiService.savePostazione(postazione1);
 
         System.out.println("--------------------------------------------- SALVATAGGIO UTENTI -----------------------------------------");
 
-        User user1 = new User("Marco","Callegari","","",postazioni);
-user1.nomeCompleto();
-user1.email();
+        User user1 = new User("Marco","Orosio","","",postazioni);
+        prenotazioni.add(user1);
 prenotazioni.add(user1);
 
 salvataggiService.savePrenotazione(user1);

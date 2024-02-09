@@ -12,34 +12,96 @@ import java.util.List;
 @NoArgsConstructor
 public class Postazione {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long Id;
 
     private long codiceUnivoco;
 
     private String descrizione;
 
-@Enumerated
-    private TIPO tipo;
 
-@Enumerated
-    private STATO stato;
+    private String tipo;
+
+
+    private String stato;
 
 private int numeroOccupantiMassimo;
 
 @ManyToOne
+@JoinColumn
 private Edificio edificio;
 
 @ManyToMany
-    private List<Prenotazione>prenotaziones;
+@JoinTable( name = "postazioni_prenotazioni",
+        joinColumns = @JoinColumn(name = "postazioni_id"),
+        inverseJoinColumns = @JoinColumn(name = "prenotazioni_id"))
+private List<Prenotazione>prenotaziones;
+
+
 
     public Postazione(long codiceUnivoco, String descrizione, TIPO tipo, STATO stato, int numeroOccupantiMassimo, Edificio edificio, List<Prenotazione> prenotaziones) {
         this.codiceUnivoco = codiceUnivoco;
         this.descrizione = descrizione;
-        this.tipo = tipo;
-        this.stato = stato;
+        this.tipo = tipo.toString();
+        this.stato = stato.toString();
         this.numeroOccupantiMassimo = numeroOccupantiMassimo;
         this.edificio = edificio;
+        this.prenotaziones = prenotaziones;
+    }
+
+    public long getCodiceUnivoco() {
+        return codiceUnivoco;
+    }
+
+    public void setCodiceUnivoco(long codiceUnivoco) {
+        this.codiceUnivoco = codiceUnivoco;
+    }
+
+    public String getDescrizione() {
+        return descrizione;
+    }
+
+    public void setDescrizione(String descrizione) {
+        this.descrizione = descrizione;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getStato() {
+        return stato;
+    }
+
+    public void setStato(String stato) {
+        this.stato = stato;
+    }
+
+    public int getNumeroOccupantiMassimo() {
+        return numeroOccupantiMassimo;
+    }
+
+    public void setNumeroOccupantiMassimo(int numeroOccupantiMassimo) {
+        this.numeroOccupantiMassimo = numeroOccupantiMassimo;
+    }
+
+    public Edificio getEdificio() {
+        return edificio;
+    }
+
+    public void setEdificio(Edificio edificio) {
+        this.edificio = edificio;
+    }
+
+    public List<Prenotazione> getPrenotaziones() {
+        return prenotaziones;
+    }
+
+    public void setPrenotaziones(List<Prenotazione> prenotaziones) {
         this.prenotaziones = prenotaziones;
     }
 }

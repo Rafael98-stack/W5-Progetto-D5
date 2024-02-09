@@ -11,7 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Edificio {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long Id;
 
     private String nome;
@@ -19,12 +19,45 @@ public class Edificio {
 
     private String citta;
     @OneToMany
+    @JoinColumn(name = "postazioni")
     private List<Postazione> postaziones;
 
     public Edificio(String nome, String indirizzo, String citta, List<Postazione> postaziones) {
         this.nome = nome;
         this.indirizzo = indirizzo;
         this.citta = citta;
+        this.postaziones = postaziones;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getIndirizzo() {
+        return indirizzo;
+    }
+
+    public void setIndirizzo(String indirizzo) {
+        this.indirizzo = indirizzo;
+    }
+
+    public String getCitta() {
+        return citta;
+    }
+
+    public void setCitta(String citta) {
+        this.citta = citta;
+    }
+
+    public List<Postazione> getPostaziones() {
+        return postaziones;
+    }
+
+    public void setPostaziones(List<Postazione> postaziones) {
         this.postaziones = postaziones;
     }
 }
