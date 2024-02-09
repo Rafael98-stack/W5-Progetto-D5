@@ -25,24 +25,27 @@ public class ProgettoD5Runner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        List<Postazione> postazioni = new ArrayList<>();
-        List<Prenotazione> prenotazioni = new ArrayList<>();
+        List<Postazione> postazioni1 = new ArrayList<>();
+        List<Prenotazione> prenotazioni1 = new ArrayList<>();
         System.out.println("--------------------------------------------- SALVATAGGIO EDIFICIO -----------------------------------------");
 
-        Edificio edificio1 = new Edificio("Maxim","Via della Giumenta","Roma",postazioni);
+        Edificio edificio1 = new Edificio("Maxim","Via della Giumenta","Roma",postazioni1);
 salvataggiService.saveEdificio(edificio1);
 
         System.out.println("--------------------------------------------- SALVATAGGIO POSTAZIONE -----------------------------------------");
 
-        Postazione postazione1 = new Postazione(123213,"blabla", TIPO.PRIVATO, STATO.LIBERO,60,edificio1,prenotazioni);
-postazioni.add(postazione1);
+        Postazione postazione1 = new Postazione(123213,"blabla", TIPO.PRIVATO, STATO.LIBERO,60,edificio1,prenotazioni1);
+        postazioni1.add(postazione1);
 salvataggiService.savePostazione(postazione1);
+
+Postazione postazione2 = new Postazione("APERTI SOLO DI FEBBRAIO",edificio1,prenotazioni1);
+postazioni1.add(postazione2);
+salvataggiService.savePostazione(postazione2);
 
         System.out.println("--------------------------------------------- SALVATAGGIO UTENTI -----------------------------------------");
 
-        User user1 = new User("Marco","Orosio","","",postazioni);
-        prenotazioni.add(user1);
-prenotazioni.add(user1);
+        User user1 = new User("Marco","Orosio","","",postazioni1);
+        prenotazioni1.add(user1);
 
 salvataggiService.savePrenotazione(user1);
 

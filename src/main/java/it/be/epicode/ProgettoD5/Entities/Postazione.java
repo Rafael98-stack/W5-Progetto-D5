@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.Random;
 
 @Entity
 @Data
@@ -37,7 +38,17 @@ private Edificio edificio;
         inverseJoinColumns = @JoinColumn(name = "prenotazioni_id"))
 private List<Prenotazione>prenotaziones;
 
-
+    public Postazione(String descrizione, Edificio edificio, List<Prenotazione> prenotaziones) {
+        Random random = new Random();
+        int randomPickTipo = random.nextInt(TIPO.values().length);
+        int randomPickStato = random.nextInt(STATO.values().length);
+        this.descrizione = descrizione;
+        this.edificio = edificio;
+        this.prenotaziones = prenotaziones;
+        this.codiceUnivoco = random.nextLong(50000L,300000L);
+        this.stato = STATO.values()[randomPickStato].toString();
+        this.tipo = TIPO.values()[randomPickTipo].toString();
+    }
 
     public Postazione(long codiceUnivoco, String descrizione, TIPO tipo, STATO stato, int numeroOccupantiMassimo, Edificio edificio, List<Prenotazione> prenotaziones) {
         this.codiceUnivoco = codiceUnivoco;
