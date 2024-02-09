@@ -33,9 +33,9 @@ private int numeroOccupantiMassimo;
 private Edificio edificio;
 
 @ManyToMany
-@JoinTable( name = "postazioni_prenotazioni",
-        joinColumns = @JoinColumn(name = "postazioni_id"),
-        inverseJoinColumns = @JoinColumn(name = "prenotazioni_id"))
+@JoinTable( name = "prenotazioni_postazioni",
+        joinColumns = @JoinColumn(name = "prenotazioni_id"),
+        inverseJoinColumns = @JoinColumn(name = "postazioni_id"))
 private List<Prenotazione>prenotaziones;
 
     public Postazione(String descrizione, Edificio edificio, List<Prenotazione> prenotaziones) {

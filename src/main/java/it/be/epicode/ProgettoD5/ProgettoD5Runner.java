@@ -26,11 +26,16 @@ public class ProgettoD5Runner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         List<Postazione> postazioni1 = new ArrayList<>();
+        List<Postazione> postazioni2 = new ArrayList<>();
+
         List<Prenotazione> prenotazioni1 = new ArrayList<>();
         System.out.println("--------------------------------------------- SALVATAGGIO EDIFICIO -----------------------------------------");
 
         Edificio edificio1 = new Edificio("Maxim","Via della Giumenta","Roma",postazioni1);
 salvataggiService.saveEdificio(edificio1);
+
+Edificio edificio2 = new Edificio("Teodorus","Via Cagliari","Cagliari",postazioni2);
+        salvataggiService.saveEdificio(edificio2);
 
         System.out.println("--------------------------------------------- SALVATAGGIO POSTAZIONE -----------------------------------------");
 
@@ -46,8 +51,11 @@ salvataggiService.savePostazione(postazione2);
 
         User user1 = new User("Marco","Orosio","","",postazioni1);
         prenotazioni1.add(user1);
+        salvataggiService.savePrenotazione(user1);
 
-salvataggiService.savePrenotazione(user1);
+
+        User user2 = new User("Giulio","Giannizzeri","Giulio Giannizzeri","qwerty@gmail.com",postazioni2);
+        salvataggiService.savePrenotazione(user2);
 
     }
 }

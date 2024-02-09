@@ -24,7 +24,7 @@ private String nomeCompleto;
 private String email;
 
 @ManyToMany
-@JoinTable( name = "prenotazioni_postazioni",
+@JoinTable( name = "postazioni_prenotazioni",
         joinColumns = @JoinColumn(name = "prenotazioni_id"),
         inverseJoinColumns = @JoinColumn(name = "postazioni_id"))
 private List<Postazione> postaziones;
