@@ -10,7 +10,6 @@ import java.util.Random;
 
 @Entity
 @Data
-@NoArgsConstructor
 public abstract class Prenotazione {
 @Id
 @GeneratedValue(strategy = GenerationType.AUTO)
